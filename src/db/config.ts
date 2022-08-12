@@ -9,6 +9,8 @@ let MYSQL_CONF: ConnectionConfig
 let REDIS_CONF: IREDIS_CONF
 
 const env = process.env.NODE_ENV // 环境参数
+
+console.log(env, 'env')
 if (env === 'dev') {
   // mysql
   MYSQL_CONF = {
@@ -16,7 +18,7 @@ if (env === 'dev') {
     user: 'root',
     password: 'myzy9910',
     port: 3306,
-    database: 'myblog'
+    database: 'my-blog'
   }
 
   // redis
@@ -33,7 +35,7 @@ if (env === 'production') {
     user: 'root',
     password: 'myzy9910',
     port: 3306,
-    database: 'myblog'
+    database: 'my-blog'
   }
 
   // redis

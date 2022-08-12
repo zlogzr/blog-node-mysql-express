@@ -1,5 +1,5 @@
 import mysql, { escape } from 'mysql'
-import { MYSQL_CONF } from '../config/db'
+import { MYSQL_CONF } from './config'
 
 // 创建链接对象
 const con = mysql.createConnection(MYSQL_CONF)
