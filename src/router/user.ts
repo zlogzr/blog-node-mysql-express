@@ -18,7 +18,7 @@ router.post('/login', (req: any, res, next) => {
     req.session.username = data.username
     req.session.realname = data.realname
     req.session.role = data.role
-    res.json(new SuccessModel('登录成功'))
+    res.json(new SuccessModel(data, '登录成功'))
   })
 })
 

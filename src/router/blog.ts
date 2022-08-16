@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { getList, getDetail, newBlog, updateBlog, delBlog } from '../controller/blog'
+import blogCheck from '../middleware/blogCheck'
 import loginCheck from '../middleware/loginCheck'
 import { ErrorModel, SuccessModel } from '../utils/util'
 
@@ -30,21 +31,14 @@ router.post('/new', loginCheck, (req: any, res: any, next: any) => {
   })
 })
 
-router.post('/update', loginCheck, (req: any, res: any, next: any) => {
-  // if (req.session.role === 0 && req.query.id !== req.session.userid) {
-  //   res.json(new ErrorModel('权限不足'))
-  // }
+router.post('/update', loginCheck, blogCheck, (req: any, res: any, next: any) => {
   const result = updateBlog(req.query.id, req.body)
   result.then(val =>
     res.json(val ? new SuccessModel('更新博客成功') : new ErrorModel('更新博客失败'))
   )
 })
 
-router.post('/del', loginCheck, (req: any, res: any, next: any) => {
-  // if (req.session.role === 0 && req.query.id !== req.session.userid) {
-  //   res.json(new ErrorModel('权限不足'))
-  // }
-
+router.post('/del', loginCheck, blogCheck, (req: any, res: any, next: any) => {
   const result = delBlog(req.query.id)
   result.then(val => {
     res.json(val ? new SuccessModel('删除博客成功') : new ErrorModel('删除博客失败'))

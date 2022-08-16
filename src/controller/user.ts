@@ -8,7 +8,7 @@ const login = (username: any, password: any) => {
   password = escape(password)
 
   const sql = `
-        select * from users where username=${username} and password=${password}
+        select id,username,realname,role,createtime from users where username=${username} and password=${password}
     `
   return exec(sql).then((rows: any) => rows[0] || {})
 }

@@ -1,7 +1,7 @@
 import xss from 'xss'
 import { exec } from '../db/mysql'
 
-const getList = (author: string, keyword: string) => {
+const getList = (author?: string, keyword?: string) => {
   let sql = `select * from blogs where 1=1 `
   if (author) {
     sql += `and author='${author}' `
