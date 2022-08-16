@@ -13,7 +13,8 @@ router.post('/login', (req: any, res, next) => {
       return
     }
     // 设置 session
-    req.session.id = data.id
+    // req.session.id = data.id
+    req.session.userid = data.id
     req.session.username = data.username
     req.session.realname = data.realname
     req.session.role = data.role

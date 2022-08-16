@@ -31,9 +31,9 @@ router.post('/new', loginCheck, (req: any, res: any, next: any) => {
 })
 
 router.post('/update', loginCheck, (req: any, res: any, next: any) => {
-  if (req.session.role === 0 && req.query.id !== req.session.id) {
-    res.json(new ErrorModel('权限不足'))
-  }
+  // if (req.session.role === 0 && req.query.id !== req.session.userid) {
+  //   res.json(new ErrorModel('权限不足'))
+  // }
   const result = updateBlog(req.query.id, req.body)
   result.then(val =>
     res.json(val ? new SuccessModel('更新博客成功') : new ErrorModel('更新博客失败'))
@@ -41,9 +41,9 @@ router.post('/update', loginCheck, (req: any, res: any, next: any) => {
 })
 
 router.post('/del', loginCheck, (req: any, res: any, next: any) => {
-  if (req.session.role === 0 && req.query.id !== req.session.id) {
-    res.json(new ErrorModel('权限不足'))
-  }
+  // if (req.session.role === 0 && req.query.id !== req.session.userid) {
+  //   res.json(new ErrorModel('权限不足'))
+  // }
 
   const result = delBlog(req.query.id)
   result.then(val => {
