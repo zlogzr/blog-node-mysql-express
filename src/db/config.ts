@@ -18,7 +18,7 @@ if (env === 'dev') {
     user: 'root',
     password: 'myzy9910',
     port: 3306,
-    database: 'myblog'
+    database: 'my-blog'
   }
 
   // redis
@@ -35,7 +35,7 @@ if (env === 'production') {
     user: 'root',
     password: 'myzy9910',
     port: 3306,
-    database: 'myblog'
+    database: 'my-blog'
   }
 
   // redis

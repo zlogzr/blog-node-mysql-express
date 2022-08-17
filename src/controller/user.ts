@@ -21,7 +21,7 @@ const register = (username: any, password: any) => {
   const createtime = Date.now()
 
   const sql = `
-        insert into users (username, 'password', createtime) value (${username},${password},${createtime})
+        insert into users (username, password, createtime) value (${username},${password},${createtime})
     `
   return exec(sql).then((insertData: any) => ({
     id: insertData.insertId

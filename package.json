@@ -6,7 +6,7 @@
   "scripts": {
     "dev:build": "tsc -w",
     "dev:start": "cross-env NODE_ENV=dev nodemon ./build/index.js",
-    "dev": "tsc && concurrently npm:dev:*"
+    "start": "tsc && concurrently npm:dev:*"
   },
   "keywords": [],
   "author": "nolan",

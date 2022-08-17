@@ -1,25 +1,25 @@
 class BaseModel {
-  constructor(private data: any, private message?: string) {
+  constructor(private data: any, private msg?: string) {
     if (typeof data === 'string') {
-      this.message = data
+      this.msg = data
       this.data = null
     } else {
       this.data = data
-      this.message = message
+      this.msg = msg
     }
   }
 }
 
 class SuccessModel extends BaseModel {
-  constructor(data: any, message?: string, private code?: number) {
-    super(data, message)
+  constructor(data: any, msg?: string, private code?: number) {
+    super(data, msg)
     this.code = 0
   }
 }
 
 class ErrorModel extends BaseModel {
-  constructor(data: any, message?: string, private code?: number) {
-    super(data, message)
+  constructor(data: any, msg?: string, private code?: number) {
+    super(data, msg)
     this.code = -1
   }
 }
