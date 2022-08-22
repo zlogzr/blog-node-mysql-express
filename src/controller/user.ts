@@ -1,7 +1,7 @@
 import { exec, escape } from '../db/mysql'
 import { genPassword } from '../utils/cryp'
 
-const login = (username: any, password: any) => {
+export const login = (username: any, password: any) => {
   // 防止sql注入，将特殊字符转换
   username = escape(username)
   // password = genPassword(password) // 生成加密密码
@@ -13,7 +13,7 @@ const login = (username: any, password: any) => {
   return exec(sql).then((rows: any) => rows[0] || {})
 }
 
-const register = (username: any, password: any) => {
+export const register = (username: any, password: any) => {
   // 防止sql注入，将特殊字符转换
   username = escape(username)
   // password = genPassword(password) // 生成加密密码
@@ -28,4 +28,9 @@ const register = (username: any, password: any) => {
   }))
 }
 
-export { login, register }
+export const getMe = (id: number) => {
+  const sql = `
+        select * from users where id=${id}
+    `
+  return exec(sql).then((rows: any) => rows[0])
+}

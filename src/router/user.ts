@@ -1,8 +1,23 @@
 import { Router } from 'express'
-import { login, register } from '../controller/user'
+import { login, register, getMe } from '../controller/user'
 import { ErrorModel, SuccessModel } from '../utils/util'
 
 const router = Router()
+
+router.get('/me', (req: any, res, next) => {
+  if (!req.session?.userid) {
+    res.json(new ErrorModel('获取用户信息失败'))
+    return
+  }
+  const result = getMe(req.session.userid)
+  result.then(data => {
+    if (!data.username) {
+      res.json(new ErrorModel('获取用户信息失败'))
+      return
+    }
+    res.json(new SuccessModel(data, '获取用户信息成功'))
+  })
+})
 
 router.post('/login', (req: any, res, next) => {
   const { username, password } = req.body
