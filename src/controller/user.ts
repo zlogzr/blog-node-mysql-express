@@ -34,3 +34,8 @@ export const getMe = (id: number) => {
     `
   return exec(sql).then((rows: any) => rows[0])
 }
+
+export const getAllUser = () => {
+  const sql = `select * from users`
+  return exec(sql)
+}

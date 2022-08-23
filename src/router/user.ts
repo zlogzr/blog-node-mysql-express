@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import { login, register, getMe } from '../controller/user'
 import { ErrorModel, SuccessModel } from '../utils/util'
+import registerCheck from '../middleware/registerCheck'
 
 const router = Router()
 
@@ -37,12 +38,12 @@ router.post('/login', (req: any, res, next) => {
   })
 })
 
-router.post('/register', function (req, res, next) {
+router.post('/register', registerCheck, function (req, res, next) {
   const { username, password } = req.body
   const result = register(username, password)
-  result.then(data =>
+  result.then(data => {
     res.json(data.id ? new SuccessModel(data, '注册成功') : new ErrorModel('注册失败'))
-  )
+  })
 })
 
 export default router
