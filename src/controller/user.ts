@@ -39,3 +39,13 @@ export const getAllUser = () => {
   const sql = `select * from users`
   return exec(sql)
 }
+
+export const updateUser = (username: string, password: string, realname: string) => {
+  // 防止sql注入，将特殊字符转换
+  username = escape(username)
+  // password = genPassword(password) // 生成加密密码
+  password = escape(password)
+  realname = escape(realname)
+  const sql = `update users set username=${username},password=${password},realname=${realname}`
+  return exec(sql)
+}

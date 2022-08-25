@@ -1,7 +1,8 @@
 import { Router } from 'express'
-import { login, register, getMe } from '../controller/user'
+import { login, register, getMe, updateUser } from '../controller/user'
 import { ErrorModel, SuccessModel } from '../utils/util'
 import registerCheck from '../middleware/registerCheck'
+import loginCheck from '../middleware/loginCheck'
 
 const router = Router()
 
@@ -44,6 +45,12 @@ router.post('/register', registerCheck, function (req, res, next) {
   result.then(data => {
     res.json(data.id ? new SuccessModel(data, '注册成功') : new ErrorModel('注册失败'))
   })
+})
+
+router.post('/updateUser', loginCheck, (req: any, res, next) => {
+  const { username, password, realname } = req.body
+  res.json(new ErrorModel('接口暂未完成，请稍后再试'))
+  // const result = updateUser(username, password, realname)
 })
 
 export default router
