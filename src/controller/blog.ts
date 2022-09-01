@@ -49,10 +49,16 @@ const updateBlog = (id: number, blogData: any = {}) => {
   return exec(sql).then((updateData: any) => updateData.affectedRows > 0)
 }
 
-const delBlog = (id: any) => {
+const delBlog = (id: number) => {
   // id 就是要删除博客的 id
   const sql = `delete from blogs where id='${id}';`
   return exec(sql).then((delData: any) => delData.affectedRows > 0)
 }
 
-export { getList, getDetail, newBlog, updateBlog, delBlog }
+const batDelBlog = (ids: number[]) => {
+  // id 就是要删除博客的 id
+  const sql = `delete from blogs where id in(${ids});`
+  return exec(sql).then((delData: any) => delData.affectedRows > 0)
+}
+
+export { getList, getDetail, newBlog, updateBlog, delBlog, batDelBlog }

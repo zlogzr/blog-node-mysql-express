@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { getList, getDetail, newBlog, updateBlog, delBlog } from '../controller/blog'
+import { getList, getDetail, newBlog, updateBlog, delBlog, batDelBlog } from '../controller/blog'
 import blogCheck from '../middleware/blogCheck'
 import loginCheck from '../middleware/loginCheck'
 import { ErrorModel, SuccessModel } from '../utils/util'
@@ -40,6 +40,13 @@ router.post('/update', loginCheck, blogCheck, (req: any, res: any, next: any) =>
 
 router.post('/del', loginCheck, blogCheck, (req: any, res: any, next: any) => {
   const result = delBlog(req.query.id)
+  result.then(val => {
+    res.json(val ? new SuccessModel('删除博客成功') : new ErrorModel('删除博客失败'))
+  })
+})
+
+router.post('/batDel', loginCheck, blogCheck, (req: any, res: any, next: any) => {
+  const result = batDelBlog(req.body.ids)
   result.then(val => {
     res.json(val ? new SuccessModel('删除博客成功') : new ErrorModel('删除博客失败'))
   })
