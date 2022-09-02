@@ -1,3 +1,11 @@
+/*
+ * @Author: zlogzr
+ * @Date: 2022-08-12 10:33
+ * @LastEditors: zlogzr
+ * @LastEditTime: 2022-09-02 11:42
+ * @FilePath: \blog-node-mysql-express\src\router\user.ts
+ * @Description:
+ */
 import { Router } from 'express'
 import { login, register, getMe, updateUser } from '../controller/user'
 import { ErrorModel, SuccessModel } from '../utils/util'
@@ -30,7 +38,6 @@ router.post('/login', (req: any, res, next) => {
       return
     }
     // 设置 session
-    // req.session.id = data.id
     req.session.userid = data.id
     req.session.username = data.username
     req.session.realname = data.realname

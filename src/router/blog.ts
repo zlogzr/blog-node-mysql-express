@@ -7,7 +7,7 @@ import { ErrorModel, SuccessModel } from '../utils/util'
 const router = Router()
 
 router.get('/list', function (req: any, res: any, next: any) {
-  let author = req.query.author || ''
+  const author = req.query.author || ''
   const keyword = req.query.keyword || ''
 
   const result = getList(author, keyword)
